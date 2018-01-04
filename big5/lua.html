@@ -102,6 +102,7 @@
 			.lua
 			{
 				font-family: Consolas;
+				color: #FF5F00;
 				font-size: 12px;
 			}
 		</style>
@@ -152,7 +153,7 @@
 								</table>
 							</td>
 							<td width=50></td>
-							<td><img src="../image/QSExe.jpg"><p class="sintro">●程式頁面</p></td>
+							<td valign=top><img src="../image/QSExe.jpg"><p class="sintro">●程式頁面</p></td>
 						</tr>
 						<tr>
 							<td height=50></td>
@@ -192,51 +193,51 @@
 						<tr>
 							<td bgcolor=FFFFFF align=left valign=top width=640>
 								<pre>
-
-<scan class="lua">　RemoveGeneral_Skill = sgs.CreateTriggerSkill{　</scan>
-<scan class="lua">　　　name = "RemoveGeneral_Skill",　</scan>
-<scan class="lua">　　　events = {sgs.MarkChanged, sgs.TurnStart},　</scan>
-<scan class="lua">　　　global = true,　</scan>
-<scan class="lua">　　　frequency = sgs.Skill_Compulsory, 　</scan>
-<scan class="lua">　　　on_trigger = function(self, event, player, data)　</scan>
-<scan class="lua">　　　　　if event == sgs.MarkChanged then　</scan>
-<scan class="lua">　　　　　　　local mark = data:toMark()　</scan>
-<scan class="lua">　　　　　　　if mark.name == "@RemoveGeneral" then　</scan>
-<scan class="lua">　　　　　　　　　local skills = player:getVisibleSkillList()　</scan>
-<scan class="lua">　　　　　　　　　local room = player:getRoom()　</scan>
-<scan class="lua">　　　　　　　　　if player:getMark("@RemoveGeneral")>0 then　</scan>
-<scan class="lua">　　　　　　　　　　　for _, skill in sgs.qlist(skills) do　</scan>
-<scan class="lua">　　　　　　　　　　　　　room:addPlayerMark(player, "Qingcheng"..skill:objectName())　</scan>
-<scan class="lua">　　　　　　　　　　　end　</scan>
-<scan class="lua">　　　　　　　　　else　</scan>
-<scan class="lua">　　　　　　　　　　　for _, skill in sgs.qlist(skills) do　</scan>
-<scan class="lua">　　　　　　　　　　　　　room:removePlayerMark(player, "Qingcheng"..skill:objectName())　</scan>
-<scan class="lua">　　　　　　　　　　　end　</scan>
-<scan class="lua">　　　　　　　　　end　</scan>
-<scan class="lua">　　　　　　　end　</scan>
-<scan class="lua">　　　　　elseif event == sgs.TurnStart then　　　</scan>
-<scan class="lua">　　　　　　　local room = player:getRoom()　</scan>
-<scan class="lua">　　　　　　　if player:getMark("@RemoveGeneral")>0 then　</scan>
-<scan class="lua">　　　　　　　　　room:setPlayerMark(player, "@RemoveGeneral", 0)　</scan>
-<scan class="lua">　　　　　　　　　local msg = sgs.LogMessage()　</scan>
-<scan class="lua">　　　　　　　　　msg.type = "#RemoveGeneralBack"　</scan>
-<scan class="lua">　　　　　　　　　msg.from = player　</scan>
-<scan class="lua">　　　　　　　　　room:sendLog(msg)　</scan>
-<scan class="lua">　　　　　　　　　return true　</scan>
-<scan class="lua">　　　　　　　end　</scan>
-<scan class="lua">　　　　　end　</scan>
-<scan class="lua">　　　end,　</scan>
-<scan class="lua">　　　can_trigger = function(self, target)　</scan>
-<scan class="lua">　　　　　return target ~= nil　</scan>
-<scan class="lua">　　　end,　</scan>
-<scan class="lua">　　　priority = 12　</scan>
-<scan class="lua">　}　</scan>
-<scan class="lua">　local RemoveGeneral_SkillList=sgs.SkillList()　</scan>
-<scan class="lua">　if not sgs.Sanguosha:getSkill("RemoveGeneral_Skill") then 　</scan>
-<scan class="lua">　　　RemoveGeneral_SkillList:append(RemoveGeneral_Skill) 　</scan>
-<scan class="lua">　end　</scan>
-<scan class="lua">　sgs.Sanguosha:addSkills(RemoveGeneral_SkillList)　</scan>
-
+<scan class="lua">
+　RemoveGeneral_Skill = sgs.CreateTriggerSkill{
+　　　name = "RemoveGeneral_Skill",
+　　　events = {sgs.MarkChanged, sgs.TurnStart},
+　　　global = true,
+　　　frequency = sgs.Skill_Compulsory, 
+　　　on_trigger = function(self, event, player, data)
+　　　　　if event == sgs.MarkChanged then
+　　　　　　　local mark = data:toMark()
+　　　　　　　if mark.name == "@RemoveGeneral" then
+　　　　　　　　　local skills = player:getVisibleSkillList()
+　　　　　　　　　local room = player:getRoom()
+　　　　　　　　　if player:getMark("@RemoveGeneral")>0 then
+　　　　　　　　　　　for _, skill in sgs.qlist(skills) do
+　　　　　　　　　　　　　room:addPlayerMark(player, "Qingcheng"..skill:objectName())
+　　　　　　　　　　　end
+　　　　　　　　　else
+　　　　　　　　　　　for _, skill in sgs.qlist(skills) do
+　　　　　　　　　　　　　room:removePlayerMark(player, "Qingcheng"..skill:objectName())
+　　　　　　　　　　　end
+　　　　　　　　　end
+　　　　　　　end
+　　　　　elseif event == sgs.TurnStart then　　
+　　　　　　　local room = player:getRoom()
+　　　　　　　if player:getMark("@RemoveGeneral")>0 then
+　　　　　　　　　room:setPlayerMark(player, "@RemoveGeneral", 0)
+　　　　　　　　　local msg = sgs.LogMessage()
+　　　　　　　　　msg.type = "#RemoveGeneralBack"
+　　　　　　　　　msg.from = player
+　　　　　　　　　room:sendLog(msg)
+　　　　　　　　　return true
+　　　　　　　end
+　　　　　end
+　　　end,
+　　　can_trigger = function(self, target)
+　　　　　return target ~= nil
+　　　end,
+　　　priority = 12
+　}
+　local RemoveGeneral_SkillList=sgs.SkillList()
+　if not sgs.Sanguosha:getSkill("RemoveGeneral_Skill") then 
+　　　RemoveGeneral_SkillList:append(RemoveGeneral_Skill) 
+　end
+　sgs.Sanguosha:addSkills(RemoveGeneral_SkillList)
+</scan>
 								</pre>
 							</td>
 							<td width=80></td>
